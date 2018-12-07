@@ -1,33 +1,9 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-
 <?php
-//Включить показ всех ошибок
-error_reporting(E_ALL);
-//Объявляем переменные
-$var1 = 'Переменная1';
-$var2 = 'Переменная2';
-$array = array('key' => 'value');
+// Установка значения настройки конфигурации. Включаем вывод всех ошибок
+ini_set ('error_reporting', E_ALL);
+ini_set ('display_errors', 1);
+ini_set ('display_startup_errors', 1);
 
-//Ссылка на переменную $var1
-$var = 'var1';
-
-//Способы вывода переменных
-echo "Выводим переменную 1: $var1". "<br>". "Выводим переменную 2: $var2". "<br>";
-echo ('Выводим переменную 2:'. $var2. "<br>");
-
-//Вывод переменной $var
-echo ("${$var}");
-
-//Выводим содержимое массива по ключю
-echo ($array['key']);
-echo "Значение массива по ключю key: {$array['key']}", "<br>";
-print "Значение массива по ключю key: {$array['key']}". "<br>";
-
-//print можно использовать в условиях, а echo нельзя
-if (print($var2)){
-    echo 'Условие сработало'."<br>";
-}
-?>
-
-<p><?=$var1 //Вывод нужного значения без использования echo ?></p>
+//Подключаем файлы проекта
+require_once 'app/header.php';
+require_once 'app/footer.php';
