@@ -36,7 +36,7 @@ require_once 'include/functions.php';
                     <ul class="nav navbar-nav">
                         <?php
                         // Передаем в переменную вызов функции get_categories
-                        $categories = get_categories($link);
+                        $categories = get_categories();
                         ?>
                         <?php
                         //Проверяем не пустой ли массив
