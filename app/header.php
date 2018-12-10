@@ -51,7 +51,41 @@
                             ),
                         );
                         ?>
-
+                        <?php if (count($categories) === 0): ?>
+                        <li><a href="#"><i class="glyphicon glyphicon-plus-sign"></i>Добавить категорию</a></li>
+                        <?php else: ?>
+                        <?php 
+                        
+                        //Выводим категории меню с помощью цыкла while
+                       // $i = 0;
+                       // $count = count($categories);
+//                        while($i < $count)
+//                        {
+//                            echo '<li><a href="category.php?id='. $categories[$i]['category_id'] .'">'. $categories[$i]['category_title'] .'</a></li>';
+//                            $i++;
+//                        }
+                        
+                        //Выводим категории меню с помощью цыкла do while
+//                        do
+//                        {
+//                           echo '<li><a href="category.php?id='. $categories[$i]['category_id'] .'">'. $categories[$i]['category_title'] .'</a></li>';
+//                           $i++;
+//                        }
+//                        while($i<$count);
+//                        
+                        //Выводим категории меню с помощью цыкла for
+//                        for ($i = 0, $count = count($categories); $i< $count; $i++)
+//                        {
+//                           echo '<li><a href="category.php?id='. $categories[$i]['category_id'] .'">'. $categories[$i]['category_title'] .'</a></li>';
+//                        }
+                        
+                        //Выводим категории меню с помощью цыкла для массивов foreach
+                        foreach ($categories as $category)
+                        {
+                            echo '<li><a href="category.php?id='.$category["category_id"].'">'.$category["category_title"].' </a></li>';
+                        }
+                       ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
