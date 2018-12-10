@@ -1,3 +1,7 @@
+<?php
+require_once 'include/database.php';
+require_once 'include/functions.php';
+?>
 <!DOCTYPE html>
 <html lang="ru">
     <head>
@@ -30,68 +34,24 @@
                 </div>
                 <div class="collapse navbar-collapse" id="responsive-menu">
                     <ul class="nav navbar-nav">
-
                         <?php
-                        
-                        $categories = array(
-                            array(
-                                'category_id'    => '1',
-                                'category_title' => 'Путешествия',
-                                'category_slug'  => 'travel',
-                            ),
-                            array(
-                                'category_id'    => '2',
-                                'category_title' => 'Жизнь',
-                                'category_slug'  => 'life',
-                            ),
-                            array(
-                                'category_id'    => '3',
-                                'category_title' => 'Авто',
-                                'category_slug'  => 'car',
-                            ),
-                        );
+                        // Передаем в переменную вызов функции get_categories
+                        $categories = get_categories($link);
                         ?>
-                        <?php if (count($categories) === 0): ?>
-                        <li><a href="#"><i class="glyphicon glyphicon-plus-sign"></i>Добавить категорию</a></li>
-                        <?php else: ?>
-                        <?php 
-                        
-                        //Выводим категории меню с помощью цыкла while
-                       // $i = 0;
-                       // $count = count($categories);
-//                        while($i < $count)
-//                        {
-//                            echo '<li><a href="category.php?id='. $categories[$i]['category_id'] .'">'. $categories[$i]['category_title'] .'</a></li>';
-//                            $i++;
-//                        }
-                        
-                        //Выводим категории меню с помощью цыкла do while
-//                        do
-//                        {
-//                           echo '<li><a href="category.php?id='. $categories[$i]['category_id'] .'">'. $categories[$i]['category_title'] .'</a></li>';
-//                           $i++;
-//                        }
-//                        while($i<$count);
-//                        
-                        //Выводим категории меню с помощью цыкла for
-//                        for ($i = 0, $count = count($categories); $i< $count; $i++)
-//                        {
-//                           echo '<li><a href="category.php?id='. $categories[$i]['category_id'] .'">'. $categories[$i]['category_title'] .'</a></li>';
-//                        }
-                        
-                        //Выводим категории меню с помощью цыкла для массивов foreach
-                        foreach ($categories as $category)
-                        {
-                            echo '<li><a href="category.php?id='.$category["category_id"].'">'.$category["category_title"].' </a></li>';
-                        }
-                       ?>
+                        <?php
+                        //Проверяем не пустой ли массив
+                        if (count($categories) === 0):
+                            ?>
+                            <li><a href="#"><i class="glyphicon glyphicon-plus-sign"></i>Добавить категорию</a></li>
+                            <?php else: ?>
+                                <?php
+                                //Выводим категории меню с помощью цыкла для массивов foreach
+                                foreach ($categories as $category):
+                                    ?>
+                                <li><a href="category.php?id=<?= $category["id"] ?>"><?= $category["title"] ?> </a></li>
+                            <?php endforeach; ?>
                         <?php endif; ?>
                     </ul>
                 </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="alert alert-danger">
-                <pre>   <?= $categories[0]['category_title']; ?> </pre>
             </div>
         </div>
