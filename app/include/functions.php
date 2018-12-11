@@ -50,3 +50,62 @@ function get_post_by_id($post_id) {
     //Возвращаем результат
     return $post;
 }
+
+function generate_code($length = 8) 
+{
+    $string = '';
+    $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
+    $num_chars = strlen($chars);
+    
+    for ($i = 0; $i < $length; $i++) 
+    {
+        $string .= substr($chars, rand(1, $num_chars) - 1, 1);
+    }
+    
+    return $string;
+}
+
+function insert_subscriber($email) 
+{
+    global $link;
+    
+    $email = mysqli_real_escape_string($link, $email); //Делает нашу строку с email безопасной
+    
+    // 1. Проверить есть ли подписчик в таблице subscribers
+
+    $query = "SELECT * FROM subcribers WHERE email = '$email'";
+    
+    $result = mysqli_query($link, $query);
+    
+    if (!mysqli_num_rows($result)) 
+    {
+    // 2. Если его нет, то создаем подписчика с уникальным кодом (неактивного)
+        $subscriber_code = generate_code();
+        
+        $insert_query = "INSERT INTO subcribers (email, code) VALUES ('$email', '$subscriber_code')";
+        
+        $result = mysqli_query($link, $insert_query);
+        
+        if ($result) 
+        {
+            return 'created';
+        }
+        else
+        {
+            return 'fail';
+        }
+    }
+    else
+    {
+        return 'exist'; //Значит что пользователь есть в базе
+    }
+}
+
+function get_posts_by_category($category_id)
+{
+   global $link;
+   
+   $category_id = mysqli_real_escape_string($category_id);
+   
+   
+}

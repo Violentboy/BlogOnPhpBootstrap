@@ -3,7 +3,9 @@
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-
+ 
+//Создадим переменную которая хранит в себе глобальный массив GET с параметром ['post_id']
+//Теперь мы можем обратится к ней простым способом a href="/post.php?post_id=
 $post_id = $_GET['post_id'];
 //Проверка строки на число, если не число остановим скрипт
 if (!is_numeric($post_id)) exit();
@@ -32,7 +34,7 @@ $post = get_post_by_id($post_id);
             </div>
         </div>
         <div class="col-md-3">
-            sidebar
+            <?php include_once 'app/sidebar.php'; ?>
         </div>
     </div>
 </div>

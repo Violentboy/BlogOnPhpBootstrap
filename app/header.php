@@ -36,6 +36,7 @@ require_once 'include/functions.php';
                     <ul class="nav navbar-nav">
                         <?php
                         // Передаем в переменную вызов функции get_categories
+                        // В которой прописаны пути к БД для наших категорий
                         $categories = get_categories();
                         ?>
                         <?php

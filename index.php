@@ -4,7 +4,7 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-//Подключаем файлы проекта
+//Подключаем файл шапки
 require_once 'app/header.php';
 ?>
 
@@ -15,9 +15,13 @@ require_once 'app/header.php';
                 <h1> Все записи: </h1>
             </div>
             <?php
+            // Передаем в переменную вызов функции get_posts
             $posts = get_posts();
             ?>
-            <?php foreach ($posts as $post): ?>
+            <?php
+            // Вывод постов на главной странице(в укороченном варианте вывода)
+            foreach ($posts as $post):
+                ?>
                 <div class="row">
                     <div class="col-md-3">
                         <a href="#" class="thumbnail">
@@ -26,7 +30,8 @@ require_once 'app/header.php';
                     </div>
                     <div class="col-md-9">
                         <h4><a href="/post.php?post_id=<?= $post['id'] ?>"><?= $post['title'] ?></a></h4>
-                        <p><?= mb_substr ($post['content'], 0, 100, 'UTF-8'). '...' ?></p>
+                        <p><?=//Обрезаем вывод контента до 100 символов
+                         mb_substr($post['content'], 0, 100, 'UTF-8') . '...' ?></p>
                         <p><a class="btn btn-info btn-sm" href="/post.php?post_id=<?= $post['id'] ?>">Читать полностью</a></p>
                         <br/>
                         <ul class="list-inline">
@@ -39,13 +44,11 @@ require_once 'app/header.php';
             <?php endforeach; ?>
         </div>
         <div class="col-md-3">
-
+            <?php include_once 'app/sidebar.php'; ?>
         </div>
     </div>
-
 </div>
 
-
-
 <?php
+//Подключаем файл подвала
 require_once 'app/footer.php';
