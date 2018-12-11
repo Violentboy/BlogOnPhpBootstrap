@@ -12,20 +12,17 @@ require_once 'app/header.php';
     <div class="row">
         <div class="col-md-9">
             <?php
-            
+            // Передаем в переменную глобальный массив _GET с параметром id
             $category_id = $_GET['id'];
-            // Передаем в переменную вызов функции get_posts
+            // Передаем в переменную вызов функции get_posts_by_category
             $posts = get_posts_by_category($category_id);
+            // Передаем в переменную вызов функции get_category_title
             $category_title = get_category_title($category_id);
-            
             ?>
             <div class="page-header">
                 <h1> <?= $category_title; ?>: </h1>
             </div>
-            <?php
-            // Вывод постов на главной странице(в укороченном варианте вывода)
-            foreach ($posts as $post):
-                ?>
+            <?php foreach ($posts as $post): ?>
                 <div class="row">
                     <div class="col-md-3">
                         <a href="#" class="thumbnail">
@@ -48,11 +45,12 @@ require_once 'app/header.php';
             <?php endforeach; ?>
         </div>
         <div class="col-md-3">
-            <?php include_once 'app/sidebar.php'; ?>
+            <?php 
+            //Подключаем файл подписки
+            include_once 'app/sidebar.php'; ?>
         </div>
     </div>
 </div>
-
 <?php
 //Подключаем файл подвала
 require_once 'app/footer.php';

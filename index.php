@@ -36,7 +36,7 @@ require_once 'app/header.php';
                         <br/>
                         <ul class="list-inline">
                             <li><i class="glyphicon glyphicon-list"></i> <a href="#">Название категории</a> | </li>
-                            <li><i class="glyphicon glyphicon-calendar"></i>10 декабря 2018 15:30 </li>
+                            <li><i class="glyphicon glyphicon-calendar"></i> <?= $post['creation_time']; ?> </li>
                         </ul>
                     </div>
                 </div>
@@ -44,7 +44,9 @@ require_once 'app/header.php';
             <?php endforeach; ?>
         </div>
         <div class="col-md-3">
-            <?php include_once 'app/sidebar.php'; ?>
+            <?php 
+            //Подключаем файл подписки
+            include_once 'app/sidebar.php'; ?>
         </div>
     </div>
 </div>
