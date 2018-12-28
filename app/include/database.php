@@ -1,10 +1,10 @@
 <?php
 
-//Подключаемся к базе данных my_first_blog
-$link = mysqli_connect('localhost', 'root', '', 'my_first_blog');
+//Подключаемся к базе данных magisters_blog
+$link = mysqli_connect('localhost', 'root', '', 'magisters_blog');
 
 // Проверка на подключение к БД
-if (mysqli_connect_errno())
+if (!$link)
 {
     echo 'Ошибка в подключении к БД (' . mysqli_connect_errno() . '):' . mysqli_connect_error();
     exit();

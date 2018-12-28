@@ -12,6 +12,22 @@ function get_categories() {
     return $categories;
 }
 
+function get_posts_by_category($category_id) {
+    global $link;
+    //экранирует специальные символы в строке, используемой в SQL-запросе,
+    //принмимая во внимание кодировку соединения, таким образом,
+    //что результат можно безопасно использовать в SQL-запросе в функци mysqli_query()
+    $category_id = mysqli_real_escape_string($link, $category_id);
+    //Извлекаем все поля из таблицы posts
+    $sql         = 'SELECT * FROM posts WHERE id = ' . "'$category_id'";
+    //Результат выполнения функции ($link- ссылка на подключение к БД, $sql- запрос который мы отправляем)
+    $result      = mysqli_query($link, $sql);
+    // Выбираем все строки из таблицы posts и помещаем их в ассоциативный массив
+    $posts       = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    //Возвращаем результат
+    return $posts;
+}
+
 function get_posts() {
     global $link;
     //Извлекаем все поля из таблицы posts
@@ -77,22 +93,6 @@ function insert_subscriber($email) {
     {
         return 'exist'; //Значит что пользователь есть в базе
     }
-}
-
-function get_posts_by_category($category_id) {
-    global $link;
-    //экранирует специальные символы в строке, используемой в SQL-запросе,
-    //принмимая во внимание кодировку соединения, таким образом,
-    //что результат можно безопасно использовать в SQL-запросе в функци mysqli_query()
-    $category_id = mysqli_real_escape_string($link, $category_id);
-    //Извлекаем все поля из таблицы posts
-    $sql         = 'SELECT * FROM posts WHERE id = ' . "'$category_id'";
-    //Результат выполнения функции ($link- ссылка на подключение к БД, $sql- запрос который мы отправляем)
-    $result      = mysqli_query($link, $sql);
-    // Выбираем все строки из таблицы posts и помещаем их в ассоциативный массив
-    $posts       = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    //Возвращаем результат
-    return $posts;
 }
 
 function get_category_title($category_id) {
