@@ -8,7 +8,7 @@ require_once 'include/functions.php';
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap Template</title>
+        <title>BlogOnPhpBootstrap</title>
 
         <!-- Bootstrap -->
         <link href="public/css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@ require_once 'include/functions.php';
                         //Проверяем не пустой ли массив
                         if (count($categories) === 0):
                             ?>
-                            <li><a href="#"><i class="glyphicon glyphicon-plus-sign"></i>Добавить категорию</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-plus-sign"></i>Необходимо добавить категорию</a></li>
                             <?php else: ?>
                                 <?php
                                 //Выводим категории меню с помощью цыкла для массивов foreach

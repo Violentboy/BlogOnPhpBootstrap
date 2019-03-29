@@ -36,8 +36,8 @@ require_once 'app/header.php';
                         <p><a class="btn btn-info btn-sm" href="/post.php?post_id=<?= $post['id'] ?>">Читать полностью</a></p>
                         <br/>
                         <ul class="list-inline">
-                            <li><i class="glyphicon glyphicon-list"></i> <a href="#">Название категории</a> | </li>
-                            <li><i class="glyphicon glyphicon-calendar"></i>10 декабря 2018 15:30 </li>
+                            <li><i class="glyphicon glyphicon-list"></i> <a href=""><?= $category_title; ?></a> | </li>
+                            <li><i class="glyphicon glyphicon-calendar"></i><?= $post['creation_time']; ?> </li>
                         </ul>
                     </div>
                 </div>

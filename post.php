@@ -13,6 +13,8 @@ if (!is_numeric($post_id))
 require_once 'app/header.php';
 //Получаем массив постов
 $post = get_post_by_id($post_id);
+$category_id = $post['category_id'];
+$category_title = get_category_title($category_id);
 ?>
 <div class="container">
     <div class="row">
@@ -21,8 +23,8 @@ $post = get_post_by_id($post_id);
                 <h1><?= $post['title'] ?></h1>
             </div>
             <ul class="list-inline">
-                <li><i class="glyphicon glyphicon-list"></i> <a href="#">Название категории</a> | </li>
-                <li><i class="glyphicon glyphicon-calendar"></i>10 декабря 2018 15:30 </li>
+                <li><i class="glyphicon glyphicon-list"></i> <a href="category.php?id=<?= $post['category_id']; ?>"><?= $category_title; ?></a> | </li>
+                <li><i class="glyphicon glyphicon-calendar"></i><?= $post['creation_time']; ?></li>
             </ul>
             <hr>
             <div class="post-content">

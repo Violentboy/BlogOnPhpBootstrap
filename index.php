@@ -15,12 +15,13 @@ require_once 'app/header.php';
                 <h1> Все записи: </h1>
             </div>
             <?php
-            // Передаем в переменную вызов функции get_posts
+            // Передаем в переменную вызов функции get_post
             $posts = get_posts();
             ?>
             <?php
             // Вывод постов на главной странице(в укороченном варианте вывода)
             foreach ($posts as $post):
+                $category_title = get_category_title($post['category_id']);
                 ?>
                 <div class="row">
                     <div class="col-md-3">
@@ -35,7 +36,7 @@ require_once 'app/header.php';
                         <p><a class="btn btn-info btn-sm" href="/post.php?post_id=<?= $post['id'] ?>">Читать полностью</a></p>
                         <br/>
                         <ul class="list-inline">
-                            <li><i class="glyphicon glyphicon-list"></i> <a href="#">Название категории</a> | </li>
+                            <li><i class="glyphicon glyphicon-list"></i> <a href="category.php?id=<?= $post['category_id']; ?>"><?= $category_title; ?></a> | </li>
                             <li><i class="glyphicon glyphicon-calendar"></i> <?= $post['creation_time']; ?> </li>
                         </ul>
                     </div>
@@ -46,7 +47,7 @@ require_once 'app/header.php';
         <div class="col-md-3">
             <?php 
             //Подключаем файл подписки
-            include_once 'app/sidebar.php'; ?>
+            include_once 'app/sidebar.php';?>
         </div>
     </div>
 </div>
