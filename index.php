@@ -26,7 +26,7 @@ require_once 'app/header.php';
                 <div class="row">
                     <div class="col-md-3">
                         <a href="#" class="thumbnail">
-                            <img src="<?= $post['image'] ?>" alt="">
+                            <img src="/public/img/<?= $post['image'] ?>" alt="">
                         </a>
                     </div>
                     <div class="col-md-9">

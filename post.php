@@ -5,10 +5,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 //Создадим переменную которая хранит в себе глобальный массив GET с параметром ['post_id']
 //Теперь мы можем обратится к ней простым способом a href="/post.php?post_id=
-$post_id = $_GET['post_id'];
+$post_id = filter_input(INPUT_GET,'post_id');
 //Проверка строки на число, если не число остановим скрипт
-if (!is_numeric($post_id))
+if (!is_numeric($post_id)) {
     exit();
+}
 //Подключаем файл шапки
 require_once 'app/header.php';
 //Получаем массив постов
@@ -28,7 +29,7 @@ $category_title = get_category_title($category_id);
             </ul>
             <hr>
             <div class="post-content">
-                <img src="<?= $post['image'] ?>" align="left" style="padding: 0 10px 10px 0;">
+                <img src="/public/img/<?= $post['image'] ?>" align="left" style="padding: 0 10px 10px 0;">
                 <?= $post['content'] ?>
             </div>
         </div>

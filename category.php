@@ -13,7 +13,7 @@ require_once 'app/header.php';
         <div class="col-md-9">
             <?php
             // Передаем в переменную глобальный массив _GET с параметром id
-            $category_id = $_GET['id'];
+            $category_id = filter_input(INPUT_GET, 'id');
             // Передаем в переменную вызов функции get_posts_by_category
             $posts = get_posts_by_category($category_id);
             // Передаем в переменную вызов функции get_category_title
@@ -26,7 +26,7 @@ require_once 'app/header.php';
                 <div class="row">
                     <div class="col-md-3">
                         <a href="#" class="thumbnail">
-                            <img src="<?= $post['image'] ?>" alt="">
+                            <img src="/public/img/<?= $post['image'] ?>" alt="">
                         </a>
                     </div>
                     <div class="col-md-9">
@@ -37,7 +37,7 @@ require_once 'app/header.php';
                         <br/>
                         <ul class="list-inline">
                             <li><i class="glyphicon glyphicon-list"></i> <a href=""><?= $category_title; ?></a> | </li>
-                            <li><i class="glyphicon glyphicon-calendar"></i><?= $post['creation_time']; ?> </li>
+                            <li><i class="glyphicon glyphicon-calendar"></i> <?= $post['creation_time']; ?> </li>
                         </ul>
                     </div>
                 </div>
